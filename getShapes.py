@@ -20,14 +20,18 @@ def getShapes(imageName):
     drawn_img = eraseEdges(img, drawn_img)
 
     top_circles, include_arr = getCircles(img, drawn_img)
-    drawCircles(drawn_img, top_circles, include_arr)
+    #drawCircles(drawn_img, top_circles, include_arr)
 
 
-
+    print("drawing contours")
     # Draw Circle Contours and erase loosely, Filtering circles will help a lot here
     for i in range(top_circles.shape[0]):
-        top_circle = top_circles[i]
-        contour(img, drawn_img, (top_circle[0], top_circle[1]), top_circle[2], 5)
+        for j in range(top_circles.shape[1]):
+            if top_circles[i,j] is not None and include_arr[i,j] == 1:
+                top_circle = top_circles[i,j]
+                contour(img, drawn_img, (top_circle[0], top_circle[1]), top_circle[2], 5)
+
+    print("performing gradient analysis")
     drawn_img = eraseCircles(img, drawn_img)
 
     #Clustering
@@ -53,7 +57,7 @@ def getShapes(imageName):
 
 if __name__=="__main__":
     #getShapes('glasses')
-    getShapes('spoon')
+    #getShapes('spoon')
     #getShapes('airplane')
-    #getShapes('bicycle')
+    getShapes('bicycle')
     #getShapes('bell')
