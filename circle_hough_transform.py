@@ -76,6 +76,3 @@ def drawCircles(img, top_circles, include_arr):
                 center_col = top_circle[1]
                 r = top_circle[2]
                 cv2.circle(img,(int(center_col), int(center_row)), r, (0,0,255), 3)
-
-if __name__=="__main__":
-    img = cv2.imread('bicycle.png')

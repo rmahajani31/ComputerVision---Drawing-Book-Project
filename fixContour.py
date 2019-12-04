@@ -5,7 +5,7 @@ from skimage import data
 from skimage.filters import gaussian
 from skimage.segmentation import active_contour
 
-def contour(img, drawn_img, center, radius, epsilon):
+def drawContour(img, drawn_img, center, radius, epsilon):
     s = np.linspace(0, 2*np.pi, 400)
     r = center[0] + (radius+epsilon)*np.sin(s)
     c = center[1] + (radius+epsilon)*np.cos(s)

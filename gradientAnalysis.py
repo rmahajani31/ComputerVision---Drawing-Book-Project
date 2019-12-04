@@ -3,7 +3,7 @@ import cv2 as cv
 from matplotlib import pyplot as plt
 
 # Only Check gradient of single cell
-def eraseEdges(origImg, drawnImg):
+def eraseStrict(origImg, drawnImg):
     sobelx = cv.Sobel(origImg, cv.CV_64F, 1, 0, ksize=5)
     sobely = cv.Sobel(origImg, cv.CV_64F, 0, 1 ,ksize=5)
 
@@ -16,7 +16,7 @@ def eraseEdges(origImg, drawnImg):
     return drawnImg
 
 # Check gradient of neighbors in 9-box
-def eraseCircles(origImg, drawnImg):
+def eraseLoose(origImg, drawnImg):
     sobelx = cv.Sobel(origImg, cv.CV_64F, 1, 0, ksize=5)
     sobely = cv.Sobel(origImg, cv.CV_64F, 0, 1 ,ksize=5)
 

@@ -8,7 +8,7 @@ def sortRadius(circle):
 def euclidDist(center1, center2):
     return math.sqrt((center1[0]-center2[0])**2 + (center1[1]-center2[1])**2)
 
-def getCircleClusters(top_circles, include_arr):
+def circleOrder(top_circles, include_arr):
     circleThresh = 0.01
 
     # Extract circles to use and sort by radius
