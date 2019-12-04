@@ -94,7 +94,10 @@ def lineOrder(img,n_steps,line_thresh=50,len_thresh=60,wsz=10):
         skt[lre,lce] = 0
         rlist.append(lrp)
         clist.append(lcp)
-    splits = list(range(0,len(rlist),len(rlist)//n_steps))
+    step = len(rlist)//n_steps
+    if step == 0:
+        step += 1
+    splits = list(range(0, len(rlist), step))
     splits.append(len(rlist))
     rans = []
     cans = []

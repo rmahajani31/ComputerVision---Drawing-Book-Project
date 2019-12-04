@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 
 def getCircles(img, drawn_img):
     edges = cv2.Canny(img, 50, 150, apertureSize=3)
-    print(drawn_img)
+    #print(drawn_img)
     angle_step_size = math.pi / 120
     img_size = np.shape(img)
     #print(type(votes_theta_dim))
@@ -14,7 +14,7 @@ def getCircles(img, drawn_img):
     upperbound = 50
     radius_range = range(lowerbound,upperbound,1)
     votes = np.zeros(shape=(img_size[0],img_size[1],upperbound))
-    print(np.shape(votes))
+    #print(np.shape(votes))
     rows = img_size[0]
     cols = img_size[1]
     r = 25
@@ -22,7 +22,7 @@ def getCircles(img, drawn_img):
     num_circles = 10
     top_circles = np.empty((upperbound-lowerbound+1, num_circles), dtype=object)
     for r in radius_range:
-        print("r is", r)
+        #print("r is", r)
         for y in range(0,rows):
             for x in range(0,cols):
                 if edges[y,x] == 255:
@@ -46,7 +46,7 @@ def getCircles(img, drawn_img):
     threshold = 0.05
     max_possible_score = 400
     include_arr = np.zeros(shape=np.shape(top_circles))
-    print(np.shape(top_circles)[0])
+    #print(np.shape(top_circles)[0])
     for i in range(np.shape(top_circles)[0]):
         for j in range(np.shape(top_circles)[1]):
             top_circle = top_circles[i,j]
@@ -62,7 +62,7 @@ def getCircles(img, drawn_img):
                     boundary_col = int(boundary_point[1])
                     if boundary_row >= 0 and boundary_row < rows and boundary_col >= 0 and boundary_col < cols and edges[boundary_row, boundary_col] == 255 and drawn_img[boundary_row, boundary_col] == 1:
                         cur_score += 1
-                print("score for circle", i, "is", cur_score)
+                #print("score for circle", i, "is", cur_score)
                 if cur_score > threshold * max_possible_score:
                     include_arr[i,j] = 1
     return top_circles, include_arr
